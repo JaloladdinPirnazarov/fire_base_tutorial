@@ -29,24 +29,25 @@ class _RegisterPageState extends State<RegisterPage> {
     if (passwordConfirmed() && detailConfirmed()) {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
-          password: _passwordController.text.trim());
+          password: _passwordController.text.trim(),
+      );
       await addUserDetails(
-          _firstNameController.text.trim(),
-          _lastNameController.text.trim(),
-          _emailController.text.trim(),
-          _passwordController.text.trim(),
-          int.parse(_ageController.text.trim()),
+        _firstNameController.text.trim(),
+        _lastNameController.text.trim(),
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        int.parse(_ageController.text.trim()),
       );
     }
   }
 
-  Future addUserDetails(
-      String firstName, String lastName, String email,String password, int age) async {
+  Future addUserDetails(String firstName, String lastName, String email,
+      String password, int age) async {
     await FirebaseFirestore.instance.collection('Users').add({
       'first name': firstName,
       'last name': lastName,
       'email': email,
-      'password':password,
+      'password': password,
       'age': age,
     });
   }
@@ -167,7 +168,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         controller: _ageController,
                         style: GoogleFonts.poppins(),
                         decoration: InputDecoration(
@@ -288,7 +291,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 60,
                 ),
 
-                InkWell(
+                GestureDetector(
                   onTap: signUp,
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 22),

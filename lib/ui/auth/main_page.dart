@@ -22,6 +22,7 @@ class _MainPageState extends State<MainPage> {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
+          print("Snapshot: ${snapshot.data}");
           return snapshot.hasData ? HomePage() : AuthPage();
         },
       ),
