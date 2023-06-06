@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/home_page.dart';
+import '../pages/tasks_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _MainPageState extends State<MainPage> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           print("Snapshot: ${snapshot.data}");
-          return snapshot.hasData ? HomePage() : AuthPage();
+          return snapshot.hasData ? TasksPage() : AuthPage();
         },
       ),
     );
